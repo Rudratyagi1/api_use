@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Web Application</title>
+</head>
+<body>
+
+<h1>Team Vs Team</h1>
+
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form action="/teamvteam" method="get">
+    <label>Select Team 1</label>
+    <select name="team1" required>
+        <option>Select Team 1</option>
+        {% for item in teams %}
+            <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Select Team 2</label>
+    <select name="team2" required>
+        <option>Select Team 2</option>
+        {% for item in teams %}
+            <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Find Track Record">
+</form>
+
+{% if result %}
+    <h2>Comparison Result:</h2>
+    {% for key, value in result.items() %}
+        <p>{{ key }}: {{ value }}</p>
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
